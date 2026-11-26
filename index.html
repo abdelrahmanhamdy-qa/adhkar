@@ -24,9 +24,16 @@ header{position:sticky;top:0;background:var(--bg);padding:8px 0;z-index:5}
 .gh{color:var(--acc);font-weight:700;font-size:20px;margin:18px 4px 4px}
 #q{width:100%;box-sizing:border-box;font:18px inherit;font-family:inherit;padding:10px;border:1px solid var(--line);border-radius:12px;background:var(--card);color:var(--ink);margin-top:8px}
 .back{background:none;border:none;color:var(--acc);font:700 18px inherit;font-family:inherit;padding:6px 2px}
-.ov{position:fixed;inset:0;background:rgba(0,0,0,.55);display:flex;align-items:center;justify-content:center;padding:20px;z-index:50}
-.dlg{background:var(--card);color:var(--ink);border-radius:18px;padding:24px 20px;max-width:420px;text-align:center;font-size:22px;line-height:2.1;border:1px solid var(--line)}
-.dlg button{font:700 20px inherit;font-family:inherit;margin-top:14px;padding:8px 28px;border-radius:999px;border:2px solid var(--acc);background:var(--acc);color:#fff}
+.ov{position:fixed;inset:0;background:rgba(10,20,19,.6);-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);display:flex;align-items:center;justify-content:center;padding:20px;z-index:50;animation:ovin .25s ease-out}
+.dlg{position:relative;overflow:hidden;background:var(--card);color:var(--ink);border-radius:20px;padding:34px 26px 26px;width:100%;max-width:400px;text-align:center;border:1px solid var(--line);box-shadow:0 20px 50px rgba(0,0,0,.28);animation:dlgin .3s ease-out}
+.dlg:before{content:"";position:absolute;top:0;left:0;right:0;height:5px;background:var(--acc)}
+.dlg .orn{color:var(--acc);font-size:22px;letter-spacing:10px;line-height:1;margin-bottom:14px}
+.dlg .ttl{font-size:23px;font-weight:700;line-height:1.8}
+.dlg .sep{width:56px;height:2px;background:var(--line);margin:16px auto}
+.dlg .dua{font-size:20px;line-height:2;color:var(--mute)}
+.dlg button{display:block;width:100%;font:700 19px inherit;font-family:inherit;margin-top:24px;padding:11px 0;border-radius:12px;border:0;background:var(--acc);color:#fff}
+@keyframes ovin{from{opacity:0}to{opacity:1}}
+@keyframes dlgin{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
 .src{font-size:15px;color:var(--mute);text-align:center;margin-top:6px}
 footer{text-align:center;color:var(--mute);font-size:15px;line-height:1.9;padding:20px 0}
 </style></head><body><div class="wrap">
@@ -71,9 +78,11 @@ function show(c){
 home();
 
 (function(){var k='adhkar-dedication-seen';
-var o=el('div','ov'),d=el('div','dlg');
-d.appendChild(el('div','','إهداء إلى أرواح ضحايا حادثة الوراق.'));
-d.appendChild(el('div','','اللهم اغفر لهم وارحمهم وعافهم واعف عنهم، ووسّع مدخلهم.'));
+var o=el('div','ov'),d=el('div','dlg');d.setAttribute('role','dialog');d.setAttribute('aria-modal','true');
+d.appendChild(el('div','orn','✦ ✦ ✦'));
+d.appendChild(el('div','ttl','إهداء إلى أرواح ضحايا حادثة الوراق.'));
+d.appendChild(el('div','sep',''));
+d.appendChild(el('div','dua','اللهم اغفر لهم وارحمهم وعافهم واعف عنهم، ووسّع مدخلهم.'));
 var b=el('button','','إغلاق');b.onclick=function(){try{localStorage.setItem(k,'1')}catch(e){}o.remove()};
 d.appendChild(b);o.appendChild(d);document.body.appendChild(o)})();
 </script></body></html>
